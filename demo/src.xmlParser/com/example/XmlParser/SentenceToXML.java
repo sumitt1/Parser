@@ -23,7 +23,7 @@ public class SentenceToXML {
 	  public static void main(String[] args) {
 
 	    // Input file path
-	    String inputFilePath = "input.txt";
+	    String inputFilePath = "large.in";
 
 	    // Output file path
 	    String outputFilePath = "output.xml";
