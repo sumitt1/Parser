@@ -6,15 +6,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class TextToCSV {
+public class TextToCSVSmallFile {
 
   public static void main(String[] args) {
 
-	 // Input file path
+    // Input file path
     String inputFilePath = "small.in";
 
     // Output file path
-    String outputFilePath = "output.csv";
+    String outputFilePath = "output_small.csv";
 
     try {
 
@@ -26,7 +26,6 @@ public class TextToCSV {
 
       // Create a new string builder to build the CSV output
       StringBuilder sb = new StringBuilder();
-      StringBuilder sb1=new StringBuilder();
 
       // Initialize the sentence count
       int sentenceCount = 0;
@@ -34,6 +33,9 @@ public class TextToCSV {
       // Read each line from the input file
       String line;
       while ((line = reader.readLine()) != null) {
+
+        // Increment the sentence count
+        sentenceCount++;
 
         // Split the line into sentences using period as the delimiter
         String[] sentences = line.split("\\.");
@@ -52,38 +54,24 @@ public class TextToCSV {
           // Split the sentence into words using whitespace as the delimiter
           String[] words = sentence.split("\\s+");
 
-          // Increment the sentence count
-          sentenceCount++;
-
-          // Append the header row with the word columns, only for the first sentence
-          if (sentenceCount == 1) {
-            sb.append("Sentence,");
-            for (int i = 1; i <= words.length; i++) {
-              sb.append("Word ");
-              sb.append(i);
-              sb.append(",");
-            }
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append("\n");
-          }
-          else
-          {
-        	    for (int i = 1; i <= words.length; i++) {
-                    sb1.append("Word ");
-                    sb1.append(i);
-                   sb1.append(",");
-                  }
-                          	  
-          }
-
           // Append the row with the sentence and word count
-          sb.append("Sentence ");
           sb.append(sentenceCount);
           sb.append(",");
           sb.append(words.length);
           sb.append("\n");
 
+          // Append the header row with the word columns
+          sb.append("Sentence,");
+          for (int i = 1; i <= words.length; i++) {
+            sb.append("Word ");
+            sb.append(i);
+            sb.append(",");
+          }
+          sb.deleteCharAt(sb.length() - 1);
+          sb.append("\n");
+
           // Append the row with the sentence words
+          sb.append(sentenceCount);
           sb.append(",");
           for (String word : words) {
             sb.append(word);
@@ -116,5 +104,5 @@ public class TextToCSV {
     }
 
   }
-  }
 
+}
